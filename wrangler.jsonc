@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // must match the Worker's name in the Cloudflare dashboard
+  "name": "shuman-cleaners",
+  "compatibility_date": "2026-11-01",
+  // static site: `npm run build` exports to ./out and the Worker serves it as-is
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}

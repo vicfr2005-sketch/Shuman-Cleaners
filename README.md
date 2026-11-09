@@ -18,6 +18,15 @@ npm run build   # production build
 npm run lint
 ```
 
+## Deploy (Cloudflare Workers)
+
+The site is a static export: `npm run build` writes plain files to `out/`, and `wrangler.jsonc` serves that folder from the `shuman-cleaners` Worker. Pushing to `main` deploys through Workers Builds, with these settings:
+
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+
+To deploy from your own machine instead, run `npm run deploy`.
+
 ## Where things live
 
 | What | Where |

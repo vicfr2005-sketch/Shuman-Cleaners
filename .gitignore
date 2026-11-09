@@ -43,3 +43,7 @@ next-env.d.ts
 # design hook cache
 /.impeccable/hook.cache.json
 /.impeccable/config.local.json
+
+# cloudflare
+/.wrangler/
+.dev.vars*
