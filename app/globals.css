@@ -1,0 +1,134 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-instrument-serif), "Times New Roman", serif;
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
+  --color-brand: var(--brand);
+  --color-surface: var(--surface);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* Colours follow the hero: warm paper by day, near-black by night,
+   with the red from the lettering on the Shuman van as the one accent. */
+:root {
+  --background: #ebe9e5;
+  --foreground: #151514;
+  --surface: #e2dfd9;
+  --card: #e2dfd9;
+  --card-foreground: #151514;
+  --popover: #ebe9e5;
+  --popover-foreground: #151514;
+  --primary: #151514;
+  --primary-foreground: #ebe9e5;
+  --secondary: #e2dfd9;
+  --secondary-foreground: #151514;
+  --muted: #e2dfd9;
+  --muted-foreground: #57544f;
+  --accent: #e2dfd9;
+  --accent-foreground: #151514;
+  --brand: #b8302a;
+  --destructive: #b8302a;
+  --border: color-mix(in srgb, #151514 14%, transparent);
+  --input: color-mix(in srgb, #151514 18%, transparent);
+  --ring: #151514;
+  --radius: 0.5rem;
+  --gutter: clamp(20px, 3.2vw, 48px);
+}
+
+.dark {
+  --background: #111110;
+  --foreground: #f1efea;
+  --surface: #1a1a18;
+  --card: #1a1a18;
+  --card-foreground: #f1efea;
+  --popover: #1a1a18;
+  --popover-foreground: #f1efea;
+  --primary: #f1efea;
+  --primary-foreground: #111110;
+  --secondary: #1a1a18;
+  --secondary-foreground: #f1efea;
+  --muted: #1a1a18;
+  --muted-foreground: #a7a39b;
+  --accent: #1a1a18;
+  --accent-foreground: #f1efea;
+  --brand: #ef6352;
+  --destructive: #ef6352;
+  --border: color-mix(in srgb, #f1efea 13%, transparent);
+  --input: color-mix(in srgb, #f1efea 18%, transparent);
+  --ring: #f1efea;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    background: var(--background);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.6s ease, color 0.6s ease;
+  }
+  ::selection {
+    background: var(--brand);
+    color: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@utility wrap {
+  width: 100%;
+  padding-inline: var(--gutter);
+}
+
+/* the hero's eyebrow, reused so every section opens the same way */
+@utility eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  &::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+}

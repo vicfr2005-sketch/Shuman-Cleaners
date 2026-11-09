@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "files": [
+          "components/ui/liquid-sculpture-hero.tsx"
+        ],
+        "createdAt": "2026-11-09T03:45:32.692Z",
+        "reason": "Claude: Geist is the vendored 21st.dev component's own default font pairing (Geist + Instrument Serif), kept to match the hero the user asked to integrate"
+      }
+    ]
+  }
+}
