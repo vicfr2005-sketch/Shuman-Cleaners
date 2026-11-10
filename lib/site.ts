@@ -15,6 +15,20 @@ export const site = {
     "https://www.google.com/maps/search/?api=1&query=Shuman+Cleaners+128+South+West+Main+Street+Vidalia+GA",
 } as const
 
+// Opening hours, from the owner. `days`/`time` are what the footer shows;
+// `dayOfWeek`/`opens`/`closes` feed the search-engine data in app/page.tsx.
+export const hours = [
+  {
+    days: "Monday – Friday",
+    time: "7:30 am – 6 pm",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "07:30",
+    closes: "18:00",
+  },
+  { days: "Saturday", time: "7:30 am – 2 pm", dayOfWeek: ["Saturday"], opens: "07:30", closes: "14:00" },
+  { days: "Sunday", time: "Closed", dayOfWeek: ["Sunday"] },
+] as const
+
 export const serviceGroups = [
   {
     title: "Cleaning",

@@ -1,7 +1,7 @@
 import Image, { type StaticImageData } from "next/image"
 import { ArrowRight, ArrowUpRight, Phone } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { perks, serviceGroups, site, timeline } from "@/lib/site"
+import { hours, perks, serviceGroups, site, timeline } from "@/lib/site"
 
 import van from "@/public/images/delivery-van.jpg"
 import storefront from "@/public/images/storefront-team.jpg"
@@ -254,6 +254,21 @@ export function Visit() {
               </dd>
             </div>
             <div>
+              <dt className="text-[13px] tracking-[0.12em] text-muted-foreground uppercase">Hours</dt>
+              <dd className="mt-1.5">
+                <ul className="grid max-w-[340px] gap-1">
+                  {hours.map((row) => (
+                    <li key={row.days} className="flex justify-between gap-6">
+                      <span>{row.days}</span>
+                      <span className={cn("tabular-nums", !("opens" in row) && "text-muted-foreground")}>
+                        {row.time}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+            <div>
               <dt className="text-[13px] tracking-[0.12em] text-muted-foreground uppercase">
                 Pick-up and delivery
               </dt>
@@ -286,15 +301,34 @@ export function Visit() {
 export function Footer() {
   return (
     <footer className="wrap border-t border-border pt-12 pb-28 sm:pb-12">
-      <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-        <a href="#" className="block w-[92px]" aria-label={`${site.name}, back to top`}>
+      {/* hours sit on the same column line as the storefront photo in Visit above */}
+      <div className="grid gap-x-[clamp(24px,4vw,72px)] gap-y-10 lg:grid-cols-12">
+        <a href="#" className="block w-[92px] self-start lg:col-span-5" aria-label={`${site.name}, back to top`}>
           <Image src={logoLight} alt="" className="hidden h-auto w-full dark:block" sizes="92px" />
           <Image src={logoDark} alt="" className="block h-auto w-full dark:hidden" sizes="92px" />
         </a>
-        <div className="flex flex-col gap-2 text-[14px] text-muted-foreground sm:items-end sm:text-right">
+        <div className="lg:col-span-7">
+          <h2 id="hours-title" className="text-[13px] tracking-[0.12em] text-muted-foreground uppercase">
+            Hours
+          </h2>
+          <dl aria-labelledby="hours-title" className="mt-3 border-t border-border">
+            {hours.map((row) => (
+              <div
+                key={row.days}
+                className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-border py-4 text-[clamp(17px,1.5vw,20px)] leading-snug tracking-[-0.015em]"
+              >
+                <dt>{row.days}</dt>
+                <dd className={cn("tabular-nums", !("opens" in row) && "text-muted-foreground")}>{row.time}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div className="mt-12 flex flex-col gap-2 text-[14px] text-muted-foreground md:flex-row md:justify-between md:gap-8">
           <p>
             {site.street} · {site.city}, {site.region} ·{" "}
-            <a href={site.phoneHref} className="text-foreground hover:underline underline-offset-4">
+            <a href={site.phoneHref} className="whitespace-nowrap text-foreground hover:underline underline-offset-4">
               {site.phone}
             </a>
           </p>
@@ -309,7 +343,6 @@ export function Footer() {
               Facebook
             </a>
           </p>
-        </div>
       </div>
     </footer>
   )

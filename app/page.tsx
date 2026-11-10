@@ -1,6 +1,6 @@
 import { SiteShell } from "@/components/site/site-shell"
 import { Footer, Services, Story, Visit } from "@/components/site/sections"
-import { site } from "@/lib/site"
+import { hours, site } from "@/lib/site"
 
 const localBusiness = {
   "@context": "https://schema.org",
@@ -15,6 +15,11 @@ const localBusiness = {
     addressRegion: site.region,
     addressCountry: "US",
   },
+  openingHoursSpecification: hours.flatMap((h) =>
+    "opens" in h
+      ? [{ "@type": "OpeningHoursSpecification", dayOfWeek: h.dayOfWeek, opens: h.opens, closes: h.closes }]
+      : []
+  ),
   sameAs: [site.facebook],
 }
 
